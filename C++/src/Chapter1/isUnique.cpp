@@ -14,7 +14,7 @@ class Unique {
             }
 
             bool char_set[255] = {false};
-            for (int i = 0; i < str.length(); ++i) {
+            for (unsigned int i = 0; i < str.length(); ++i) {
                 int val = str[i] + 128;
                 if (char_set[val]) {
                     unique = false;

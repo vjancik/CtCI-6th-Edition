@@ -14,11 +14,11 @@ class Permutation {
             }
 
             int char_freq[255] = {0};
-            for (int i = 0; i < str.length(); ++i) {
+            for (unsigned int i = 0; i < str.length(); ++i) {
                 int val = str[i] + 128;
                 char_freq[val] += 1;
             }
-            for (int i = 0; i < perm.length(); ++i) {
+            for (unsigned int i = 0; i < perm.length(); ++i) {
                 int val = perm[i] + 128;
                 char_freq[val] -= 1;
             }
