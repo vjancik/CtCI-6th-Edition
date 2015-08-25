@@ -4,6 +4,21 @@
 
 #include "Matrix.hpp"
 
+class RotationMatrix : public Matrix {
+    public:
+        RotationMatrix (int** m, int height, int width) : Matrix(m, height, width) {} 
+        RotationMatrix rotate() {
+            int** rotated;
+            rotated = allocate_matrix(width, height);
+            for (int i = 0; i < height; ++i) {
+                for (int j = 0; j < width; ++j) {
+                    rotated[j][height - i - 1] = matrix[i][j];
+                }
+            }
+            return RotationMatrix(rotated, width, height);
+        }
+};
+
 using namespace std;
 
 void printUsage (char* progName) {
@@ -31,10 +46,10 @@ int main (int argc, char* argv[]) {
     }
     int height = stoi(argv[1]);
     int width = stoi(argv[2]);
-    int** matrix = Matrix::allocate_matrix(height, width);
+    int** matrix = RotationMatrix::allocate_matrix(height, width);
     readMatrix(matrix);
-    Matrix m(matrix, height, width);
+    RotationMatrix m(matrix, height, width);
     cout << m.rotate().toString() << endl;
-    Matrix::delete_matrix(matrix, height, width);
+    RotationMatrix::delete_matrix(matrix, height, width);
     return 0;
 }
